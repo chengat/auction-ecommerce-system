@@ -1,0 +1,65 @@
+services:
+  db:
+    image: mysql:5.7
+    container_name: db
+    environment:
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql
+      - ./dbstartup.sql:/docker-entrypoint-initdb.d/dbstartup.sql  #Build the database schema
+    networks:
+      - internal-network
+
+  auth:
+    image: authimage:1.0
+    container_name: authcontainer
+    depends_on:
+      web:
+        condition: service_healthy #Delay startup by 10 seconds so that db is ready
+    networks:
+      - internal-network
+
+  auction:
+    image: auctionimage:1.0
+    container_name: auctioncontainer
+    depends_on:
+      web:
+        condition: service_healthy #Delay startup by 10 seconds so that db is ready
+    networks:
+      - internal-network
+
+  payment:
+    image: paymentimage:1.0
+    container_name: paymentcontainer
+    depends_on:
+      web:
+        condition: service_healthy #Delay startup by 10 seconds so that db is ready
+    networks:
+      - internal-network
+
+  web:
+    image: webimage:1.0
+    container_name: webcontainer
+    healthcheck:
+      test: ["CMD", "true"]
+      interval: 3s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    networks:
+      - internal-network
+volumes:
+  my-db:
+networks:
+  internal-network:
+    driver: bridge

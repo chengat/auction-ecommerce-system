@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         version="4.0">
+
+	<listener>
+        <listener-class>rmi.RemoteDatabaseServer</listener-class>
+    </listener>
+    <!-- Welcome Servlet -->
+    <servlet>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <servlet-class>servlet.WelcomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <url-pattern>/welcome</url-pattern>
+    </servlet-mapping>
+
+    <!-- Sign In Servlet -->
+    <servlet>
+        <servlet-name>SignInServlet</servlet-name>
+        <servlet-class>servlet.SignInServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignInServlet</servlet-name>
+        <url-pattern>/signIn</url-pattern>
+    </servlet-mapping>
+
+    <!-- Sign Up Servlet -->
+    <servlet>
+        <servlet-name>SignUpServlet</servlet-name>
+        <servlet-class>servlet.SignUpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignUpServlet</servlet-name>
+        <url-pattern>/signUp</url-pattern>
+    </servlet-mapping>
+
+    <!-- Item Search Servlet -->
+    <servlet>
+        <servlet-name>ItemSearchServlet</servlet-name>
+        <servlet-class>servlet.ItemSearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemSearchServlet</servlet-name>
+        <url-pattern>/itemSearch</url-pattern>
+    </servlet-mapping>
+
+    <!-- Search Results Servlet -->
+    <servlet>
+        <servlet-name>SearchResultsServlet</servlet-name>
+        <servlet-class>servlet.SearchResultsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchResultsServlet</servlet-name>
+        <url-pattern>/searchResults</url-pattern>
+    </servlet-mapping>
+
+        <!-- Forward Auction Servlet -->
+    <servlet>
+        <servlet-name>ForwardAuctionServlet</servlet-name>
+        <servlet-class>servlet.ForwardAuctionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ForwardAuctionServlet</servlet-name>
+        <url-pattern>/forwardAuction</url-pattern>
+    </servlet-mapping>
+
+    <!-- Dutch Auction Servlet -->
+    <servlet>
+        <servlet-name>DutchAuctionServlet</servlet-name>
+        <servlet-class>servlet.DutchAuctionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DutchAuctionServlet</servlet-name>
+        <url-pattern>/dutchAuction</url-pattern>
+    </servlet-mapping>
+
+    <!-- Auction End Servlet -->
+    <servlet>
+        <servlet-name>AuctionEndServlet</servlet-name>
+        <servlet-class>servlet.AuctionEndServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuctionEndServlet</servlet-name>
+        <url-pattern>/auctionEnd</url-pattern>
+    </servlet-mapping>
+
+    <!-- Payment Servlet -->
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>servlet.PaymentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+
+    <!-- Receipt Servlet -->
+    <servlet>
+        <servlet-name>ReceiptServlet</servlet-name>
+        <servlet-class>servlet.ReceiptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReceiptServlet</servlet-name>
+        <url-pattern>/receipt</url-pattern>
+    </servlet-mapping>
+        <!-- DB Populator Servlet -->
+    <servlet>
+        <servlet-name>DatabasePopulator</servlet-name>
+        <servlet-class>servlet.DatabasePopulator</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DatabasePopulator</servlet-name>
+        <url-pattern>/populate</url-pattern>
+    </servlet-mapping>
+    <!-- Receipt Simulation Servlet -->
+    <servlet>
+        <servlet-name>FakeReceipt</servlet-name>
+        <servlet-class>servlet.FakeReceipt</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FakeReceipt</servlet-name>
+        <url-pattern>/simulateReceipt</url-pattern>
+    </servlet-mapping>
+</web-app>

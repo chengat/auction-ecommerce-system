@@ -1,0 +1,16 @@
+FROM maven:3.6.2 AS builder
+RUN mkdir /appdir
+COPY common /appdir
+COPY paymentModule /appdir
+COPY pom.xml /appdir
+
+
+ARG mainClass=rmi.RemotePaymentServer
+RUN mvn -f /appdir/pom.xml clean install -DrunClass=${mainClass} -Pjar
+
+FROM openjdk:21
+WORKDIR /appdir
+COPY --from=builder /appdir/target/project4413-1.0.jar /appdir/appcompiled.jar
+ENTRYPOINT ["java", "-jar", "/appdir/appcompiled.jar"]
+EXPOSE 1099
+CMD ["sh", "-c", "rmiregistry & java -jar /appdir/appcompiled.jar"]

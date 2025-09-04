@@ -1,0 +1,4 @@
+docker build -t auctionimage:1.0 -f DockerfileAuction .
+docker build -t authimage:1.0 -f DockerfileAuth .
+docker build -t paymentimage:1.0 -f DockerfilePayment .
+docker build -t webimage:1.0 -f DockerfileWeb .

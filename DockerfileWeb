@@ -1,0 +1,19 @@
+FROM alpine:latest
+RUN apk --no-cache add curl
+
+FROM maven:3.6.2 AS builder
+RUN mkdir /appdir
+COPY common /appdir
+COPY src /appdir/src
+COPY authModule /appdir
+COPY pom.xml /appdir
+ADD mysql-connector-j-9.1.0.jar /app/WEB-INF/lib/
+
+RUN mvn -f /appdir/pom.xml clean install -Pwar
+
+FROM tomcat:9-jdk11-openjdk-slim
+WORKDIR /usr/local/tomcat
+RUN rm -rf webapps/*
+COPY --from=builder /appdir/target/project4413-1.0.war /usr/local/tomcat/webapps/project4413.war
+EXPOSE 8080
+CMD ["sh", "-c", "rmiregistry & catalina.sh run"]
